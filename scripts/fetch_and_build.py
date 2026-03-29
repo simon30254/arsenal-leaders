@@ -69,11 +69,11 @@ def build_html(rows):
     # 依 run_value 降冪排序（Run Value 越大代表這球越強，對投手有利）
     def sort_key(r):
         try:
-            return -float(r.get("run_value") or 0)
+            return float(r.get("run_value") or 0)
         except:
             return 0
 
-    rows_sorted = sorted(rows, key=sort_key)
+    rows_sorted = sorted(rows, key=sort_key, reverse=True)
 
     rows_html = ""
     for rank, r in enumerate(rows_sorted, 1):
