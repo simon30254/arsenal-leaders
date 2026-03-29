@@ -58,7 +58,7 @@ def fmt_pct(val):
 def build_table(rows, top_n=50):
     def sort_key(r):
         try:
-            return float(r.get("run_value") or r.get("run_value_per100") or 0)
+            return float(r.get("run_value_per_100") or r.get("run_value") or 0)
         except:
             return 0
 
