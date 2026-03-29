@@ -17,7 +17,12 @@ def fetch_all_data(year):
         f"https://baseballsavant.mlb.com/leaderboard/pitch-arsenal-stats"
        f"?type=pitcher&pitchType=&year={year}&team=&min=1&minPitches=q&sort=4&sortDir=desc&csv=true"
     )
-    r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=15)
+   r = requests.get(url, headers={
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Referer": "https://baseballsavant.mlb.com/leaderboard/pitch-arsenal-stats",
+}, timeout=30)
     r.raise_for_status()
     text = r.content.decode("utf-8-sig")
     rows = list(csv.DictReader(io.StringIO(text)))
