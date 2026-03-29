@@ -73,11 +73,11 @@ def build_table(rows, top_n=50):
         hand      = r.get("p_throws", "")
         team      = r.get("team_name_alt") or r.get("team") or r.get("team_abbrev") or "—"
         pitch     = r.get("pitch_name") or r.get("pitch_type_name") or "—"
-        run_val   = fmt_rv(r.get("run_value") or r.get("run_value_per100"))
-        whiff     = fmt_pct(r.get("whiff_percent") or r.get("whiff_pct") or r.get("whiff"))
-        k_pct     = fmt_pct(r.get("k_percent") or r.get("k_pct") or r.get("strikeout_percent"))
-        slg       = fmt(r.get("slg") or r.get("slg_percent") or r.get("slg_against"), 3)
-        ba        = fmt(r.get("ba") or r.get("batting_average") or r.get("avg_against"), 3)
+        run_val   = fmt_rv(r.get("run_value_per_100") or r.get("run_value"))
+        whiff     = fmt_pct(r.get("whiff_percent"))
+        k_pct     = fmt_pct(r.get("k_percent"))
+        slg       = fmt(r.get("slg"), 3)
+        ba        = fmt(r.get("ba"), 3)
         avg_speed = fmt(r.get("avg_speed") or r.get("velocity"), suffix=" mph")
         spin      = fmt(r.get("avg_spin") or r.get("spin_rate"), 0, " rpm")
 
