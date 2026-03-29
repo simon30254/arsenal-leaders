@@ -73,7 +73,7 @@ def build_html(rows):
         except:
             return 0
 
-    rows_sorted = sorted(rows, key=sort_key, reverse=True)
+    rows_sorted = sorted(rows, key=sort_key, reverse=True)[:50]
 
     rows_html = ""
     for rank, r in enumerate(rows_sorted, 1):
