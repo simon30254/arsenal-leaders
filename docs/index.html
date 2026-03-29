@@ -9,431 +9,530 @@
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     background: #0f172a; color: #e2e8f0; padding: 1rem;
+    font-size: 13px;
   }
-  h1 { font-size: 1.25rem; font-weight: 800; color: #f8fafc; margin-bottom: .2rem; }
-  .subtitle { font-size: .78rem; color: #475569; margin-bottom: .75rem; }
-  .legend {
-    font-size: .72rem; color: #64748b; margin-bottom: 1rem;
-    background: #1e293b; border-radius: 6px; padding: .5rem .75rem;
-    display: flex; flex-wrap: wrap; gap: .4rem 1.5rem;
+  h1 { font-size: 1.1rem; font-weight: 800; color: #f8fafc; margin-bottom: .2rem; }
+  .subtitle { font-size: .75rem; color: #475569; margin-bottom: .75rem; }
+
+  .filters {
+    display: flex; flex-wrap: wrap; gap: .5rem;
+    margin-bottom: .75rem; align-items: center;
   }
-  .good { color: #22c55e; } .bad { color: #ef4444; }
-  .tabs { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: 1rem; }
-  .tab-btn {
-    background: #1e293b; border: 1px solid #334155; color: #64748b;
-    padding: .4rem .75rem; border-radius: 6px; cursor: pointer;
-    font-size: .8rem; transition: all .15s;
+  .filter-label { font-size: .75rem; color: #64748b; }
+  select {
+    background: #1e293b; border: 1px solid #334155; color: #cbd5e1;
+    padding: .3rem .5rem; border-radius: 5px; font-size: .75rem; cursor: pointer;
   }
-  .tab-btn:hover { background: #334155; color: #cbd5e1; }
-  .tab-btn.active { background: #2563eb; border-color: #2563eb; color: #fff; font-weight: 700; }
-  .code { opacity: .45; font-size: .68rem; }
-  .tab-panel { display: none; }
-  .tab-panel.active { display: block; }
+  input[type=text] {
+    background: #1e293b; border: 1px solid #334155; color: #cbd5e1;
+    padding: .3rem .6rem; border-radius: 5px; font-size: .75rem; width: 140px;
+  }
+  input::placeholder { color: #475569; }
+
   .table-wrap { overflow-x: auto; }
-  table { width: 100%; border-collapse: collapse; font-size: .82rem; min-width: 700px; }
-  thead { background: #1e293b; }
-  th {
-    padding: .55rem .7rem; text-align: left; color: #475569;
-    font-size: .7rem; font-weight: 700; text-transform: uppercase;
-    letter-spacing: .04em; border-bottom: 2px solid #334155;
-    white-space: nowrap;
+  table { width: 100%; border-collapse: collapse; min-width: 900px; }
+
+  .group-header th {
+    background: #0f172a; color: #475569; font-size: .65rem;
+    text-align: center; padding: .2rem; border-bottom: none;
+    text-transform: uppercase; letter-spacing: .05em;
   }
-  th[title] { cursor: help; text-decoration: underline dotted #334155; }
-  td { padding: .5rem .7rem; border-bottom: 1px solid #1a2535; }
-  tr:hover td { background: #1e293b; }
-  .rank { font-weight: 700; width: 2.2rem; font-size: .9rem; }
-  .player { font-weight: 600; color: #f1f5f9; white-space: nowrap; }
-  .hand { font-size: .68rem; color: #475569; margin-left: .25rem; }
-  .team { font-size: .78rem; color: #94a3b8; white-space: nowrap; }
-  .pitch-tag {
-    font-size: .7rem; background: #0f172a; color: #7dd3fc;
-    padding: .15rem .4rem; border-radius: 4px; white-space: nowrap;
+  thead tr:last-child th {
+    background: #1e293b; color: #64748b; font-size: .68rem;
+    font-weight: 700; text-transform: uppercase; letter-spacing: .04em;
+    padding: .5rem .5rem; border-bottom: 2px solid #334155;
+    white-space: nowrap; cursor: pointer; user-select: none;
   }
-  .stat { font-family: 'SF Mono', 'Fira Code', monospace; font-size: .82rem; }
-  .footer { margin-top: 1rem; font-size: .7rem; color: #334155; text-align: right; }
+  thead tr:last-child th:hover { color: #cbd5e1; background: #253347; }
+  thead tr:last-child th.sorted { color: #60a5fa; }
+
+  td { padding: .4rem .5rem; border-bottom: 1px solid #1a2535; white-space: nowrap; }
+  tr:hover td { background: #1e293b88; }
+
+  .rank { width: 2rem; font-weight: 700; font-size: .85rem; text-align: center; }
+  .player { font-weight: 600; color: #f1f5f9; min-width: 130px; }
+  .hand { font-size: .65rem; color: #475569; }
+  .team { color: #94a3b8; font-size: .78rem; }
+  .pitch-cell { min-width: 130px; }
+  .pt-dot {
+    display: inline-block; padding: .1rem .35rem;
+    border-radius: 4px; font-size: .65rem; font-weight: 700;
+    color: #fff; margin-right: .3rem; vertical-align: middle;
+  }
+  .stat { font-family: 'SF Mono', 'Fira Code', monospace; font-size: .78rem; text-align: right; }
+  .hi { color: #7dd3fc; }
+  .rv-cell { text-align: center; }
+  .rv-badge {
+    display: inline-block; padding: .15rem .5rem;
+    border-radius: 5px; font-weight: 700; font-size: .8rem;
+    min-width: 2.5rem; text-align: center;
+  }
+
+  .legend {
+    font-size: .7rem; color: #475569; margin-top: .75rem;
+    display: flex; flex-wrap: wrap; gap: .3rem 1rem;
+  }
+  .footer { margin-top: .75rem; font-size: .68rem; color: #334155; text-align: right; }
   .footer a { color: #3b82f6; text-decoration: none; }
+  .count { font-size: .75rem; color: #64748b; margin-bottom: .5rem; }
 </style>
 </head>
 <body>
 <h1>⚾ MLB 武器球排行榜 2026</h1>
-<p class="subtitle">各球種 Top 50｜依 Run Value 排序｜資料：Baseball Savant Statcast</p>
-<div class="legend">
-  <span>RV/100：<span class="good">負數 = 投手有利 ✓</span>　<span class="bad">正數 = 投手不利</span></span>
-  <span>揮空率 = 揮棒落空率　K% = 三振率　SLG = 被長打率　被打擊率 = BA against</span>
+<p class="subtitle">所有球種混合排行｜依 Run Value 排序｜資料：Baseball Savant Statcast</p>
+
+<div class="filters">
+  <span class="filter-label">搜尋：</span>
+  <input type="text" id="search" placeholder="投手名稱...">
+  <span class="filter-label">球種：</span>
+  <select id="pitchFilter" onchange="applyFilters()">
+    <option value="">全部</option>
+    <option value="FF">四縫線 FF</option>
+    <option value="SI">伸卡球 SI</option>
+    <option value="FC">切球 FC</option>
+    <option value="SL">滑球 SL</option>
+    <option value="SW">掃球 SW</option>
+    <option value="ST">掃球 ST</option>
+    <option value="CU">曲球 CU</option>
+    <option value="CH">變速球 CH</option>
+    <option value="FS">指叉球 FS</option>
+  </select>
+  <span class="filter-label">手性：</span>
+  <select id="handFilter" onchange="applyFilters()">
+    <option value="">全部</option>
+    <option value="R">右投 R</option>
+    <option value="L">左投 L</option>
+  </select>
 </div>
-<div class="tabs"><button class="tab-btn active" onclick="showTab('FF')" id="btn-FF">🔴 四縫線快速球 <span class="code">FF</span></button>
-<button class="tab-btn " onclick="showTab('SI')" id="btn-SI">🟠 伸卡球 <span class="code">SI</span></button>
-<button class="tab-btn " onclick="showTab('FC')" id="btn-FC">🟡 切球 <span class="code">FC</span></button>
-<button class="tab-btn " onclick="showTab('SL')" id="btn-SL">🟢 滑球 <span class="code">SL</span></button>
-<button class="tab-btn " onclick="showTab('SW')" id="btn-SW">🔵 橫掃球 <span class="code">SW</span></button>
-<button class="tab-btn " onclick="showTab('CU')" id="btn-CU">🟣 曲球 <span class="code">CU</span></button>
-<button class="tab-btn " onclick="showTab('CH')" id="btn-CH">⚪ 變速球 <span class="code">CH</span></button>
-<button class="tab-btn " onclick="showTab('FS')" id="btn-FS">🟤 指叉球 <span class="code">FS</span></button>
-</div>
-<div class="tab-panel active" id="panel-FF">
-          <div class="table-wrap">
-          <table>
-            <thead><tr>
-              <th>#</th>
-              <th>投手</th>
-              <th>球隊</th>
-              <th>球種</th>
-              <th title="Run Value：負數代表對投手越有利">RV/100</th>
-              <th title="揮棒落空率">揮空率</th>
-              <th title="三振率">K%</th>
-              <th title="被長打率">SLG</th>
-              <th title="被打擊率">被打擊率</th>
-              <th title="平均球速">均速</th>
-              <th title="平均旋轉數">旋轉數</th>
-            </tr></thead>
-            <tbody><tr>
+
+<p class="count" id="count">共 17 筆</p>
+
+<div class="table-wrap">
+<table id="mainTable">
+  <thead>
+    <tr class="group-header">
+      <th colspan="4"></th>
+      <th colspan="2">Usage</th>
+      <th colspan="3">Standard</th>
+      <th colspan="3">Standard</th>
+      <th colspan="3">Outcome</th>
+      <th colspan="4">Statcast</th>
+    </tr>
+    <tr>
+      <th onclick="sortTable(0)">#</th>
+      <th onclick="sortTable(1)">Player</th>
+      <th onclick="sortTable(2)">Team</th>
+      <th onclick="sortTable(3)">Pitch</th>
+      <th onclick="sortTable(4)">RV/100</th>
+      <th onclick="sortTable(5)" class="sorted">Run Value ↓</th>
+      <th onclick="sortTable(6)">Pitches</th>
+      <th onclick="sortTable(7)">%</th>
+      <th onclick="sortTable(8)">PA</th>
+      <th onclick="sortTable(9)">BA</th>
+      <th onclick="sortTable(10)">SLG</th>
+      <th onclick="sortTable(11)">wOBA</th>
+      <th onclick="sortTable(12)">Whiff%</th>
+      <th onclick="sortTable(13)">K%</th>
+      <th onclick="sortTable(14)">Put Away%</th>
+      <th onclick="sortTable(15)">xBA</th>
+      <th onclick="sortTable(16)">xSLG</th>
+      <th onclick="sortTable(17)">xwOBA</th>
+      <th onclick="sortTable(18)">Hard Hit%</th>
+    </tr>
+  </thead>
+  <tbody id="tableBody">
+<tr>
           <td class="rank">🥇</td>
-          <td class="player">Williams, Gavin <span class="hand"></span></td>
-          <td class="team">CLE</td>
-          <td class="pitch-tag">4-Seam Fastball</td>
-          <td class="stat"><span style="color:#22c55e;font-weight:700">-4.3</span></td>
-          <td class="stat">33.3%</td>
-          <td class="stat">18.2%</td>
-          <td class="stat">0.571</td>
-          <td class="stat">0.143</td>
-          <td class="stat">—</td>
-          <td class="stat">—</td>
-        </tr><tr>
-          <td class="rank">🥈</td>
-          <td class="player">Rogers, Trevor <span class="hand"></span></td>
-          <td class="team">BAL</td>
-          <td class="pitch-tag">4-Seam Fastball</td>
-          <td class="stat"><span style="color:#22c55e;font-weight:700">-3.0</span></td>
-          <td class="stat">25.0%</td>
-          <td class="stat">9.1%</td>
-          <td class="stat">0.250</td>
-          <td class="stat">0.250</td>
-          <td class="stat">—</td>
-          <td class="stat">—</td>
-        </tr><tr>
-          <td class="rank">🥉</td>
-          <td class="player">Liberatore, Matthew <span class="hand"></span></td>
-          <td class="team">STL</td>
-          <td class="pitch-tag">4-Seam Fastball</td>
-          <td class="stat"><span style="color:#22c55e;font-weight:700">-1.7</span></td>
-          <td class="stat">6.3%</td>
-          <td class="stat">0.0%</td>
-          <td class="stat">0.400</td>
-          <td class="stat">0.400</td>
-          <td class="stat">—</td>
-          <td class="stat">—</td>
-        </tr><tr>
-          <td class="rank">4</td>
-          <td class="player">Ragans, Cole <span class="hand"></span></td>
-          <td class="team">KC</td>
-          <td class="pitch-tag">4-Seam Fastball</td>
-          <td class="stat"><span style="color:#22c55e;font-weight:700">-0.8</span></td>
-          <td class="stat">30.0%</td>
-          <td class="stat">20.0%</td>
-          <td class="stat">0.571</td>
-          <td class="stat">0.143</td>
-          <td class="stat">—</td>
-          <td class="stat">—</td>
-        </tr><tr>
-          <td class="rank">5</td>
-          <td class="player">Peralta, Freddy <span class="hand"></span></td>
-          <td class="team">NYM</td>
-          <td class="pitch-tag">4-Seam Fastball</td>
-          <td class="stat"><span style="color:#22c55e;font-weight:700">-0.3</span></td>
-          <td class="stat">22.2%</td>
-          <td class="stat">36.4%</td>
-          <td class="stat">0.455</td>
-          <td class="stat">0.182</td>
-          <td class="stat">—</td>
-          <td class="stat">—</td>
-        </tr><tr>
-          <td class="rank">6</td>
-          <td class="player">Misiorowski, Jacob <span class="hand"></span></td>
-          <td class="team">MIL</td>
-          <td class="pitch-tag">4-Seam Fastball</td>
-          <td class="stat"><span style="color:#ef4444;font-weight:700">+1.1</span></td>
-          <td class="stat">65.5%</td>
-          <td class="stat">60.0%</td>
-          <td class="stat">0.385</td>
-          <td class="stat">0.154</td>
-          <td class="stat">—</td>
-          <td class="stat">—</td>
-        </tr><tr>
-          <td class="rank">7</td>
-          <td class="player">Sale, Chris <span class="hand"></span></td>
-          <td class="team">ATL</td>
-          <td class="pitch-tag">4-Seam Fastball</td>
-          <td class="stat"><span style="color:#ef4444;font-weight:700">+1.4</span></td>
-          <td class="stat">22.7%</td>
-          <td class="stat">23.1%</td>
-          <td class="stat">0.273</td>
-          <td class="stat">0.273</td>
-          <td class="stat">—</td>
-          <td class="stat">—</td>
-        </tr><tr>
-          <td class="rank">8</td>
-          <td class="player">Abbott, Andrew <span class="hand"></span></td>
-          <td class="team">CIN</td>
-          <td class="pitch-tag">4-Seam Fastball</td>
-          <td class="stat"><span style="color:#ef4444;font-weight:700">+2.0</span></td>
-          <td class="stat">4.3%</td>
-          <td class="stat">12.5%</td>
-          <td class="stat">0.267</td>
-          <td class="stat">0.267</td>
-          <td class="stat">—</td>
-          <td class="stat">—</td>
-        </tr><tr>
-          <td class="rank">9</td>
-          <td class="player">Ray, Robbie <span class="hand"></span></td>
-          <td class="team">SF</td>
-          <td class="pitch-tag">4-Seam Fastball</td>
-          <td class="stat"><span style="color:#ef4444;font-weight:700">+2.3</span></td>
-          <td class="stat">11.5%</td>
-          <td class="stat">7.7%</td>
-          <td class="stat">0.538</td>
-          <td class="stat">0.231</td>
-          <td class="stat">—</td>
-          <td class="stat">—</td>
-        </tr><tr>
-          <td class="rank">10</td>
-          <td class="player">Kirby, George <span class="hand"></span></td>
-          <td class="team">SEA</td>
-          <td class="pitch-tag">4-Seam Fastball</td>
-          <td class="stat"><span style="color:#ef4444;font-weight:700">+4.5</span></td>
-          <td class="stat">21.7%</td>
-          <td class="stat">30.0%</td>
-          <td class="stat">0.100</td>
-          <td class="stat">0.100</td>
-          <td class="stat">—</td>
-          <td class="stat">—</td>
-        </tr></tbody>
-          </table>
-          </div>
-        </div><div class="tab-panel " id="panel-SI">
-          <div class="table-wrap">
-          <table>
-            <thead><tr>
-              <th>#</th>
-              <th>投手</th>
-              <th>球隊</th>
-              <th>球種</th>
-              <th title="Run Value：負數代表對投手越有利">RV/100</th>
-              <th title="揮棒落空率">揮空率</th>
-              <th title="三振率">K%</th>
-              <th title="被長打率">SLG</th>
-              <th title="被打擊率">被打擊率</th>
-              <th title="平均球速">均速</th>
-              <th title="平均旋轉數">旋轉數</th>
-            </tr></thead>
-            <tbody><tr>
-          <td class="rank">🥇</td>
-          <td class="player">Valdez, Framber <span class="hand"></span></td>
-          <td class="team">DET</td>
-          <td class="pitch-tag">Sinker</td>
-          <td class="stat"><span style="color:#22c55e;font-weight:700">-2.4</span></td>
-          <td class="stat">26.3%</td>
-          <td class="stat">10.0%</td>
-          <td class="stat">0.556</td>
-          <td class="stat">0.444</td>
-          <td class="stat">—</td>
-          <td class="stat">—</td>
-        </tr><tr>
-          <td class="rank">🥈</td>
           <td class="player">Sánchez, Cristopher <span class="hand"></span></td>
           <td class="team">PHI</td>
-          <td class="pitch-tag">Sinker</td>
-          <td class="stat"><span style="color:#ef4444;font-weight:700">+3.9</span></td>
-          <td class="stat">12.0%</td>
-          <td class="stat">23.1%</td>
-          <td class="stat">0.308</td>
+          <td class="pitch-cell"><span class="pt-dot" style="background:#f97316" title="Sinker">SI</span> Sinker</td>
+          <td class="stat">3.9</td>
+          <td class="stat rv-cell"><span class="rv-badge" style="background:rgb(43,32,32);color:#e2e8f0">+2</span></td>
+          <td class="stat">45</td>
+          <td class="stat">51.7%</td>
+          <td class="stat">13</td>
           <td class="stat">0.231</td>
-          <td class="stat">—</td>
-          <td class="stat">—</td>
+          <td class="stat">0.308</td>
+          <td class="stat">0.235</td>
+          <td class="stat hi">12.0%</td>
+          <td class="stat hi">23.1%</td>
+          <td class="stat">33.3%</td>
+          <td class="stat">0.206</td>
+          <td class="stat">0.333</td>
+          <td class="stat">0.230</td>
+          <td class="stat">80.0%</td>
         </tr><tr>
-          <td class="rank">🥉</td>
+          <td class="rank">🥈</td>
           <td class="player">Soriano, José <span class="hand"></span></td>
           <td class="team">LAA</td>
-          <td class="pitch-tag">Sinker</td>
-          <td class="stat"><span style="color:#ef4444;font-weight:700">+8.0</span></td>
-          <td class="stat">42.1%</td>
-          <td class="stat">30.0%</td>
+          <td class="pitch-cell"><span class="pt-dot" style="background:#f97316" title="Sinker">SI</span> Sinker</td>
+          <td class="stat">8.0</td>
+          <td class="stat rv-cell"><span class="rv-badge" style="background:rgb(43,32,32);color:#e2e8f0">+2</span></td>
+          <td class="stat">31</td>
+          <td class="stat">34.1%</td>
+          <td class="stat">10</td>
           <td class="stat">0.000</td>
           <td class="stat">0.000</td>
-          <td class="stat">—</td>
-          <td class="stat">—</td>
-        </tr></tbody>
-          </table>
-          </div>
-        </div><div class="tab-panel " id="panel-FC">
-          <div class="table-wrap">
-          <table>
-            <thead><tr>
-              <th>#</th>
-              <th>投手</th>
-              <th>球隊</th>
-              <th>球種</th>
-              <th title="Run Value：負數代表對投手越有利">RV/100</th>
-              <th title="揮棒落空率">揮空率</th>
-              <th title="三振率">K%</th>
-              <th title="被長打率">SLG</th>
-              <th title="被打擊率">被打擊率</th>
-              <th title="平均球速">均速</th>
-              <th title="平均旋轉數">旋轉數</th>
-            </tr></thead>
-            <tbody><tr>
-          <td class="rank">🥇</td>
+          <td class="stat">0.000</td>
+          <td class="stat hi">42.1%</td>
+          <td class="stat hi">30.0%</td>
+          <td class="stat">33.3%</td>
+          <td class="stat">0.104</td>
+          <td class="stat">0.124</td>
+          <td class="stat">0.102</td>
+          <td class="stat">14.3%</td>
+        </tr><tr>
+          <td class="rank">🥉</td>
+          <td class="player">Kirby, George <span class="hand"></span></td>
+          <td class="team">SEA</td>
+          <td class="pitch-cell"><span class="pt-dot" style="background:#ef4444" title="4-Seam Fastball">FF</span> 4-Seam Fastball</td>
+          <td class="stat">4.5</td>
+          <td class="stat rv-cell"><span class="rv-badge" style="background:rgb(43,32,32);color:#e2e8f0">+2</span></td>
+          <td class="stat">44</td>
+          <td class="stat">48.9%</td>
+          <td class="stat">10</td>
+          <td class="stat">0.100</td>
+          <td class="stat">0.100</td>
+          <td class="stat">0.090</td>
+          <td class="stat hi">21.7%</td>
+          <td class="stat hi">30.0%</td>
+          <td class="stat">25.0%</td>
+          <td class="stat">0.243</td>
+          <td class="stat">0.260</td>
+          <td class="stat">0.221</td>
+          <td class="stat">42.9%</td>
+        </tr><tr>
+          <td class="rank">4</td>
+          <td class="player">Abbott, Andrew <span class="hand"></span></td>
+          <td class="team">CIN</td>
+          <td class="pitch-cell"><span class="pt-dot" style="background:#ef4444" title="4-Seam Fastball">FF</span> 4-Seam Fastball</td>
+          <td class="stat">2.0</td>
+          <td class="stat rv-cell"><span class="rv-badge" style="background:rgb(36,31,31);color:#e2e8f0">+1</span></td>
+          <td class="stat">45</td>
+          <td class="stat">54.2%</td>
+          <td class="stat">16</td>
+          <td class="stat">0.267</td>
+          <td class="stat">0.267</td>
+          <td class="stat">0.262</td>
+          <td class="stat hi">4.3%</td>
+          <td class="stat hi">12.5%</td>
+          <td class="stat">13.3%</td>
+          <td class="stat">0.226</td>
+          <td class="stat">0.255</td>
+          <td class="stat">0.250</td>
+          <td class="stat">30.8%</td>
+        </tr><tr>
+          <td class="rank">5</td>
+          <td class="player">Misiorowski, Jacob <span class="hand"></span></td>
+          <td class="team">MIL</td>
+          <td class="pitch-cell"><span class="pt-dot" style="background:#ef4444" title="4-Seam Fastball">FF</span> 4-Seam Fastball</td>
+          <td class="stat">1.1</td>
+          <td class="stat rv-cell"><span class="rv-badge" style="background:rgb(36,31,31);color:#e2e8f0">+1</span></td>
+          <td class="stat">61</td>
+          <td class="stat">64.9%</td>
+          <td class="stat">15</td>
+          <td class="stat">0.154</td>
+          <td class="stat">0.385</td>
+          <td class="stat">0.287</td>
+          <td class="stat hi">65.5%</td>
+          <td class="stat hi">60.0%</td>
+          <td class="stat">39.1%</td>
+          <td class="stat">0.123</td>
+          <td class="stat">0.351</td>
+          <td class="stat">0.264</td>
+          <td class="stat">75.0%</td>
+        </tr><tr>
+          <td class="rank">6</td>
+          <td class="player">Ray, Robbie <span class="hand"></span></td>
+          <td class="team">SF</td>
+          <td class="pitch-cell"><span class="pt-dot" style="background:#ef4444" title="4-Seam Fastball">FF</span> 4-Seam Fastball</td>
+          <td class="stat">2.3</td>
+          <td class="stat rv-cell"><span class="rv-badge" style="background:rgb(36,31,31);color:#e2e8f0">+1</span></td>
+          <td class="stat">46</td>
+          <td class="stat">51.7%</td>
+          <td class="stat">13</td>
+          <td class="stat">0.231</td>
+          <td class="stat">0.538</td>
+          <td class="stat">0.319</td>
+          <td class="stat hi">11.5%</td>
+          <td class="stat hi">7.7%</td>
+          <td class="stat">5.9%</td>
+          <td class="stat">0.204</td>
+          <td class="stat">0.489</td>
+          <td class="stat">0.291</td>
+          <td class="stat">33.3%</td>
+        </tr><tr>
+          <td class="rank">7</td>
           <td class="player">Crochet, Garrett <span class="hand"></span></td>
           <td class="team">BOS</td>
-          <td class="pitch-tag">Cutter</td>
-          <td class="stat"><span style="color:#ef4444;font-weight:700">+3.9</span></td>
-          <td class="stat">23.5%</td>
-          <td class="stat">38.5%</td>
+          <td class="pitch-cell"><span class="pt-dot" style="background:#eab308" title="Cutter">FC</span> Cutter</td>
+          <td class="stat">3.9</td>
+          <td class="stat rv-cell"><span class="rv-badge" style="background:rgb(36,31,31);color:#e2e8f0">+1</span></td>
+          <td class="stat">25</td>
+          <td class="stat">31.3%</td>
+          <td class="stat">13</td>
           <td class="stat">0.167</td>
           <td class="stat">0.167</td>
-          <td class="stat">—</td>
-          <td class="stat">—</td>
-        </tr></tbody>
-          </table>
-          </div>
-        </div><div class="tab-panel " id="panel-SL">
-          <div class="table-wrap">
-          <table>
-            <thead><tr>
-              <th>#</th>
-              <th>投手</th>
-              <th>球隊</th>
-              <th>球種</th>
-              <th title="Run Value：負數代表對投手越有利">RV/100</th>
-              <th title="揮棒落空率">揮空率</th>
-              <th title="三振率">K%</th>
-              <th title="被長打率">SLG</th>
-              <th title="被打擊率">被打擊率</th>
-              <th title="平均球速">均速</th>
-              <th title="平均旋轉數">旋轉數</th>
-            </tr></thead>
-            <tbody><tr><td colspan="10" style="text-align:center;padding:2rem;color:#64748b">本球種本季無符合資格投手</td></tr></tbody>
-          </table>
-          </div>
-        </div><div class="tab-panel " id="panel-SW">
-          <div class="table-wrap">
-          <table>
-            <thead><tr>
-              <th>#</th>
-              <th>投手</th>
-              <th>球隊</th>
-              <th>球種</th>
-              <th title="Run Value：負數代表對投手越有利">RV/100</th>
-              <th title="揮棒落空率">揮空率</th>
-              <th title="三振率">K%</th>
-              <th title="被長打率">SLG</th>
-              <th title="被打擊率">被打擊率</th>
-              <th title="平均球速">均速</th>
-              <th title="平均旋轉數">旋轉數</th>
-            </tr></thead>
-            <tbody><tr><td colspan="10" style="text-align:center;padding:2rem;color:#64748b">本球種本季無符合資格投手</td></tr></tbody>
-          </table>
-          </div>
-        </div><div class="tab-panel " id="panel-CU">
-          <div class="table-wrap">
-          <table>
-            <thead><tr>
-              <th>#</th>
-              <th>投手</th>
-              <th>球隊</th>
-              <th>球種</th>
-              <th title="Run Value：負數代表對投手越有利">RV/100</th>
-              <th title="揮棒落空率">揮空率</th>
-              <th title="三振率">K%</th>
-              <th title="被長打率">SLG</th>
-              <th title="被打擊率">被打擊率</th>
-              <th title="平均球速">均速</th>
-              <th title="平均旋轉數">旋轉數</th>
-            </tr></thead>
-            <tbody><tr>
-          <td class="rank">🥇</td>
-          <td class="player">Brown, Hunter <span class="hand"></span></td>
-          <td class="team">HOU</td>
-          <td class="pitch-tag">Curveball</td>
-          <td class="stat"><span style="color:#ef4444;font-weight:700">+3.3</span></td>
-          <td class="stat">37.5%</td>
-          <td class="stat">60.0%</td>
-          <td class="stat">0.111</td>
-          <td class="stat">0.111</td>
-          <td class="stat">—</td>
-          <td class="stat">—</td>
-        </tr></tbody>
-          </table>
-          </div>
-        </div><div class="tab-panel " id="panel-CH">
-          <div class="table-wrap">
-          <table>
-            <thead><tr>
-              <th>#</th>
-              <th>投手</th>
-              <th>球隊</th>
-              <th>球種</th>
-              <th title="Run Value：負數代表對投手越有利">RV/100</th>
-              <th title="揮棒落空率">揮空率</th>
-              <th title="三振率">K%</th>
-              <th title="被長打率">SLG</th>
-              <th title="被打擊率">被打擊率</th>
-              <th title="平均球速">均速</th>
-              <th title="平均旋轉數">旋轉數</th>
-            </tr></thead>
-            <tbody><tr>
-          <td class="rank">🥇</td>
-          <td class="player">Webb, Logan <span class="hand"></span></td>
-          <td class="team">SF</td>
-          <td class="pitch-tag">Changeup</td>
-          <td class="stat"><span style="color:#22c55e;font-weight:700">-3.6</span></td>
+          <td class="stat">0.283</td>
+          <td class="stat hi">23.5%</td>
+          <td class="stat hi">38.5%</td>
+          <td class="stat">100.0%</td>
+          <td class="stat">0.259</td>
+          <td class="stat">0.286</td>
+          <td class="stat">0.278</td>
           <td class="stat">28.6%</td>
+        </tr><tr>
+          <td class="rank">8</td>
+          <td class="player">Sale, Chris <span class="hand"></span></td>
+          <td class="team">ATL</td>
+          <td class="pitch-cell"><span class="pt-dot" style="background:#ef4444" title="4-Seam Fastball">FF</span> 4-Seam Fastball</td>
+          <td class="stat">1.4</td>
+          <td class="stat rv-cell"><span class="rv-badge" style="background:rgb(36,31,31);color:#e2e8f0">+1</span></td>
+          <td class="stat">43</td>
+          <td class="stat">48.9%</td>
+          <td class="stat">13</td>
+          <td class="stat">0.273</td>
+          <td class="stat">0.273</td>
+          <td class="stat">0.315</td>
+          <td class="stat hi">22.7%</td>
+          <td class="stat hi">23.1%</td>
           <td class="stat">27.3%</td>
-          <td class="stat">0.545</td>
-          <td class="stat">0.364</td>
-          <td class="stat">—</td>
-          <td class="stat">—</td>
-        </tr></tbody>
-          </table>
-          </div>
-        </div><div class="tab-panel " id="panel-FS">
-          <div class="table-wrap">
-          <table>
-            <thead><tr>
-              <th>#</th>
-              <th>投手</th>
-              <th>球隊</th>
-              <th>球種</th>
-              <th title="Run Value：負數代表對投手越有利">RV/100</th>
-              <th title="揮棒落空率">揮空率</th>
-              <th title="三振率">K%</th>
-              <th title="被長打率">SLG</th>
-              <th title="被打擊率">被打擊率</th>
-              <th title="平均球速">均速</th>
-              <th title="平均旋轉數">旋轉數</th>
-            </tr></thead>
-            <tbody><tr>
-          <td class="rank">🥇</td>
+          <td class="stat">0.370</td>
+          <td class="stat">0.475</td>
+          <td class="stat">0.418</td>
+          <td class="stat">50.0%</td>
+        </tr><tr>
+          <td class="rank">9</td>
           <td class="player">Gausman, Kevin <span class="hand"></span></td>
           <td class="team">TOR</td>
-          <td class="pitch-tag">Split-Finger</td>
-          <td class="stat"><span style="color:#ef4444;font-weight:700">+1.8</span></td>
-          <td class="stat">52.6%</td>
-          <td class="stat">72.7%</td>
-          <td class="stat">0.364</td>
+          <td class="pitch-cell"><span class="pt-dot" style="background:#78716c" title="Split-Finger">FS</span> Split-Finger</td>
+          <td class="stat">1.8</td>
+          <td class="stat rv-cell"><span class="rv-badge" style="background:rgb(36,31,31);color:#e2e8f0">+1</span></td>
+          <td class="stat">36</td>
+          <td class="stat">43.4%</td>
+          <td class="stat">11</td>
           <td class="stat">0.091</td>
-          <td class="stat">—</td>
-          <td class="stat">—</td>
-        </tr></tbody>
-          </table>
-          </div>
-        </div>
+          <td class="stat">0.364</td>
+          <td class="stat">0.182</td>
+          <td class="stat hi">52.6%</td>
+          <td class="stat hi">72.7%</td>
+          <td class="stat">50.0%</td>
+          <td class="stat">0.118</td>
+          <td class="stat">0.252</td>
+          <td class="stat">0.156</td>
+          <td class="stat">33.3%</td>
+        </tr><tr>
+          <td class="rank">10</td>
+          <td class="player">Brown, Hunter <span class="hand"></span></td>
+          <td class="team">HOU</td>
+          <td class="pitch-cell"><span class="pt-dot" style="background:#a855f7" title="Curveball">CU</span> Curveball</td>
+          <td class="stat">3.3</td>
+          <td class="stat rv-cell"><span class="rv-badge" style="background:rgb(36,31,31);color:#e2e8f0">+1</span></td>
+          <td class="stat">28</td>
+          <td class="stat">27.5%</td>
+          <td class="stat">10</td>
+          <td class="stat">0.111</td>
+          <td class="stat">0.111</td>
+          <td class="stat">0.160</td>
+          <td class="stat hi">37.5%</td>
+          <td class="stat hi">60.0%</td>
+          <td class="stat">37.5%</td>
+          <td class="stat">0.076</td>
+          <td class="stat">0.098</td>
+          <td class="stat">0.138</td>
+          <td class="stat">0.0%</td>
+        </tr><tr>
+          <td class="rank">11</td>
+          <td class="player">Liberatore, Matthew <span class="hand"></span></td>
+          <td class="team">STL</td>
+          <td class="pitch-cell"><span class="pt-dot" style="background:#ef4444" title="4-Seam Fastball">FF</span> 4-Seam Fastball</td>
+          <td class="stat">-1.7</td>
+          <td class="stat rv-cell"><span class="rv-badge" style="background:rgb(30,30,30);color:#e2e8f0">+0</span></td>
+          <td class="stat">28</td>
+          <td class="stat">35.9%</td>
+          <td class="stat">12</td>
+          <td class="stat">0.400</td>
+          <td class="stat">0.400</td>
+          <td class="stat">0.417</td>
+          <td class="stat hi">6.3%</td>
+          <td class="stat hi">0.0%</td>
+          <td class="stat">0.0%</td>
+          <td class="stat">0.281</td>
+          <td class="stat">0.344</td>
+          <td class="stat">0.343</td>
+          <td class="stat">50.0%</td>
+        </tr><tr>
+          <td class="rank">12</td>
+          <td class="player">Peralta, Freddy <span class="hand"></span></td>
+          <td class="team">NYM</td>
+          <td class="pitch-cell"><span class="pt-dot" style="background:#ef4444" title="4-Seam Fastball">FF</span> 4-Seam Fastball</td>
+          <td class="stat">-0.3</td>
+          <td class="stat rv-cell"><span class="rv-badge" style="background:rgb(30,30,30);color:#e2e8f0">+0</span></td>
+          <td class="stat">39</td>
+          <td class="stat">48.8%</td>
+          <td class="stat">11</td>
+          <td class="stat">0.182</td>
+          <td class="stat">0.455</td>
+          <td class="stat">0.264</td>
+          <td class="stat hi">22.2%</td>
+          <td class="stat hi">36.4%</td>
+          <td class="stat">44.4%</td>
+          <td class="stat">0.201</td>
+          <td class="stat">0.458</td>
+          <td class="stat">0.276</td>
+          <td class="stat">57.1%</td>
+        </tr><tr>
+          <td class="rank">13</td>
+          <td class="player">Ragans, Cole <span class="hand"></span></td>
+          <td class="team">KC</td>
+          <td class="pitch-cell"><span class="pt-dot" style="background:#ef4444" title="4-Seam Fastball">FF</span> 4-Seam Fastball</td>
+          <td class="stat">-0.8</td>
+          <td class="stat rv-cell"><span class="rv-badge" style="background:rgb(30,30,30);color:#e2e8f0">+0</span></td>
+          <td class="stat">45</td>
+          <td class="stat">50.0%</td>
+          <td class="stat">10</td>
+          <td class="stat">0.143</td>
+          <td class="stat">0.571</td>
+          <td class="stat">0.410</td>
+          <td class="stat hi">30.0%</td>
+          <td class="stat hi">20.0%</td>
+          <td class="stat">13.3%</td>
+          <td class="stat">0.243</td>
+          <td class="stat">0.676</td>
+          <td class="stat">0.475</td>
+          <td class="stat">60.0%</td>
+        </tr><tr>
+          <td class="rank">14</td>
+          <td class="player">Rogers, Trevor <span class="hand"></span></td>
+          <td class="team">BAL</td>
+          <td class="pitch-cell"><span class="pt-dot" style="background:#ef4444" title="4-Seam Fastball">FF</span> 4-Seam Fastball</td>
+          <td class="stat">-3.0</td>
+          <td class="stat rv-cell"><span class="rv-badge" style="background:rgb(40,192,93);color:#e2e8f0">-1</span></td>
+          <td class="stat">34</td>
+          <td class="stat">38.6%</td>
+          <td class="stat">11</td>
+          <td class="stat">0.250</td>
+          <td class="stat">0.250</td>
+          <td class="stat">0.436</td>
+          <td class="stat hi">25.0%</td>
+          <td class="stat hi">9.1%</td>
+          <td class="stat">9.1%</td>
+          <td class="stat">0.252</td>
+          <td class="stat">0.387</td>
+          <td class="stat">0.388</td>
+          <td class="stat">28.6%</td>
+        </tr><tr>
+          <td class="rank">15</td>
+          <td class="player">Williams, Gavin <span class="hand"></span></td>
+          <td class="team">CLE</td>
+          <td class="pitch-cell"><span class="pt-dot" style="background:#ef4444" title="4-Seam Fastball">FF</span> 4-Seam Fastball</td>
+          <td class="stat">-4.3</td>
+          <td class="stat rv-cell"><span class="rv-badge" style="background:rgb(40,192,93);color:#e2e8f0">-1</span></td>
+          <td class="stat">29</td>
+          <td class="stat">32.6%</td>
+          <td class="stat">11</td>
+          <td class="stat">0.143</td>
+          <td class="stat">0.571</td>
+          <td class="stat">0.436</td>
+          <td class="stat hi">33.3%</td>
+          <td class="stat hi">18.2%</td>
+          <td class="stat">25.0%</td>
+          <td class="stat">0.247</td>
+          <td class="stat">0.700</td>
+          <td class="stat">0.505</td>
+          <td class="stat">40.0%</td>
+        </tr><tr>
+          <td class="rank">16</td>
+          <td class="player">Webb, Logan <span class="hand"></span></td>
+          <td class="team">SF</td>
+          <td class="pitch-cell"><span class="pt-dot" style="background:#94a3b8" title="Changeup">CH</span> Changeup</td>
+          <td class="stat">-3.6</td>
+          <td class="stat rv-cell"><span class="rv-badge" style="background:rgb(40,192,93);color:#e2e8f0">-1</span></td>
+          <td class="stat">19</td>
+          <td class="stat">22.1%</td>
+          <td class="stat">11</td>
+          <td class="stat">0.364</td>
+          <td class="stat">0.545</td>
+          <td class="stat">0.391</td>
+          <td class="stat hi">28.6%</td>
+          <td class="stat hi">27.3%</td>
+          <td class="stat">33.3%</td>
+          <td class="stat">0.310</td>
+          <td class="stat">0.505</td>
+          <td class="stat">0.346</td>
+          <td class="stat">25.0%</td>
+        </tr><tr>
+          <td class="rank">17</td>
+          <td class="player">Valdez, Framber <span class="hand"></span></td>
+          <td class="team">DET</td>
+          <td class="pitch-cell"><span class="pt-dot" style="background:#f97316" title="Sinker">SI</span> Sinker</td>
+          <td class="stat">-2.4</td>
+          <td class="stat rv-cell"><span class="rv-badge" style="background:rgb(40,192,93);color:#e2e8f0">-1</span></td>
+          <td class="stat">43</td>
+          <td class="stat">51.8%</td>
+          <td class="stat">10</td>
+          <td class="stat">0.444</td>
+          <td class="stat">0.556</td>
+          <td class="stat">0.465</td>
+          <td class="stat hi">26.3%</td>
+          <td class="stat hi">10.0%</td>
+          <td class="stat">11.1%</td>
+          <td class="stat">0.283</td>
+          <td class="stat">0.505</td>
+          <td class="stat">0.374</td>
+          <td class="stat">75.0%</td>
+        </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="legend">
+  <span>Run Value：<strong style="color:#22c55e">負數 = 投手有利</strong>　<strong style="color:#ef4444">正數 = 投手不利</strong></span>
+  <span>Whiff% = 揮空率　K% = 三振率　Put Away% = 致勝球率</span>
+</div>
 <p class="footer">最後更新：2026-03-29｜<a href="https://baseballsavant.mlb.com/leaderboard/pitch-arsenal-stats" target="_blank">原始資料 Baseball Savant</a></p>
+
 <script>
-function showTab(code) {
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('panel-' + code).classList.add('active');
-  document.getElementById('btn-' + code).classList.add('active');
+let sortCol = 5;
+let sortAsc = false;
+const tbody = document.getElementById('tableBody');
+const allRows = Array.from(tbody.querySelectorAll('tr'));
+
+document.getElementById('search').addEventListener('input', applyFilters);
+
+function applyFilters() {
+  const search = document.getElementById('search').value.toLowerCase();
+  const pitch  = document.getElementById('pitchFilter').value;
+  const hand   = document.getElementById('handFilter').value;
+  let count = 0;
+  allRows.forEach(row => {
+    const text = row.textContent.toLowerCase();
+    const pitchCell = row.cells[3] ? row.cells[3].textContent : '';
+    const handText  = row.cells[1] ? row.cells[1].textContent : '';
+    const matchSearch = !search || text.includes(search);
+    const matchPitch  = !pitch  || pitchCell.includes(pitch);
+    const matchHand   = !hand   || handText.includes(hand);
+    const show = matchSearch && matchPitch && matchHand;
+    row.style.display = show ? '' : 'none';
+    if (show) count++;
+  });
+  document.getElementById('count').textContent = '共 ' + count + ' 筆';
+}
+
+function sortTable(col) {
+  const ths = document.querySelectorAll('thead tr:last-child th');
+  ths.forEach(th => th.classList.remove('sorted'));
+  ths[col].classList.add('sorted');
+  if (sortCol === col) { sortAsc = !sortAsc; }
+  else { sortCol = col; sortAsc = false; }
+  const sorted = allRows.slice().sort((a, b) => {
+    const av = a.cells[col] ? a.cells[col].textContent.replace(/[^0-9.\-+]/g, '') : '';
+    const bv = b.cells[col] ? b.cells[col].textContent.replace(/[^0-9.\-+]/g, '') : '';
+    const an = parseFloat(av), bn = parseFloat(bv);
+    if (!isNaN(an) && !isNaN(bn)) return sortAsc ? an - bn : bn - an;
+    return sortAsc ? av.localeCompare(bv) : bv.localeCompare(av);
+  });
+  sorted.forEach(row => tbody.appendChild(row));
 }
 </script>
 </body>
