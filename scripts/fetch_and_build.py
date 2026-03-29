@@ -15,7 +15,7 @@ PITCH_COLORS = {
 def fetch_all_data(year):
     url = (
         f"https://baseballsavant.mlb.com/leaderboard/pitch-arsenal-stats"
-        f"?type=pitcher&pitchType=&year={year}&team=&min=1&minPitches=q&csv=true"
+       f"?type=pitcher&pitchType=&year={year}&team=&min=1&minPitches=q&sort=4&sortDir=desc&csv=true"
     )
     r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=15)
     r.raise_for_status()
