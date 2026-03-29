@@ -207,7 +207,7 @@ function showTab(code) {{
 </html>"""
 
 def main():
-    all_data = {{}}
+    all_data = {}
     for code, name, emoji in PITCH_TYPES:
         print(f"抓取 {emoji} {name} ({code})...")
         try:
