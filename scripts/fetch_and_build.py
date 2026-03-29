@@ -23,7 +23,8 @@ def fetch_arsenal_data(pitch_type, year):
     )
     r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=15)
     r.raise_for_status()
-    return list(csv.DictReader(io.StringIO(r.text)))
+    text = r.content.decode("utf-8-sig")
+    return list(csv.DictReader(io.StringIO(text)))
 
 def get_name(r):
     return (
