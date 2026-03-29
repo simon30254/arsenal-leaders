@@ -19,7 +19,7 @@ if datetime.now().month < 3:
 def fetch_arsenal_data(pitch_type, year):
     url = (
         f"https://baseballsavant.mlb.com/leaderboard/pitch-arsenal-stats"
-        f"?type=pitcher&pitchType={pitch_type}&year={year}&team=&min=q&csv=true"
+        f"?type=pitcher&pitchType={pitch_type}&year={year}&team=&min=10&csv=true"
     )
     r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=15)
     r.raise_for_status()
