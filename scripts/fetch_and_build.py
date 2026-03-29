@@ -214,9 +214,9 @@ def main():
         try:
             rows = fetch_arsenal_data(code, YEAR)
             all_data[code] = rows
-            print(f"  → {{len(rows)}} 筆")
+            print(f"  → {len(rows)} 筆")
         except Exception as e:
-            print(f"  → 失敗: {{e}}")
+            print(f"  → 失敗: {e}")
             all_data[code] = []
 
     html = build_html(all_data)
